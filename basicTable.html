@@ -2,29 +2,84 @@
 
 <head>
     <script type="text/javascript" src="table_script.js"></script>
+
+    <style>
+        input[type=addButton]
+        {
+            background-color: #81dd4d;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type=editButton]
+        {
+            background-color: #8cd3a9;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type=deleteButton] 
+        {
+            background-color: #336b7d;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;;
+            border-radius: 4px;
+        }
+
+        form1 {
+             justify-content: center;
+        }
+
+        table {
+	    background:#97aaa9;
+        color: #fff;
+        border-radius: 4px
+        }
+
+
+
+    </style>
+
 </head>
 
 <body>
     <div id="wrapper">
-        <table align='center' cellspacing=2 cellpadding=5 id="data_table" border=1>
+        
+        <div align= 'center'>
+        <input type="text" id="fname" value="First Name"> <br>
+        <input type="text" id="lname" value="Last Name"> <br>
+        <input type="text" id="dob" value="dd-mm-yyyy"> <br>
+        <input type="text" id="doj" value="dd-mm-yyyy"> <br>
+        <br>
+        <input type="addButton" class="add" onclick="add_row();" value="Add Row"> <br>
+        <br>
+        </div>
+
+        <table align='center' cellspacing=2 cellpadding=5 id="data_table" order=1>
+            <!--
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Date of Birth</th>
                 <th>Date of Joining</th>
             </tr>
-
-
-            <tr>
-                <td><input type="text" id="fname" value = "John"></td>
-                <td><input type="text" id="lname" value = "Doe"></td>
-                <td><input type="text" id="dob" value = "mm-dd-yyyy"></td>
-                <td><input type="text" id="doj" value = "mm-dd-yyyy" ></td>
-                <td><input type="button" class="add" onclick="add_row();" value="Add Row"></td>
-            </tr>
-
+            -->
         </table>
+        
     </div>
+
 
 </body>
 <script>
@@ -91,9 +146,9 @@
                 "</td><td id='lname_row" + table_len + "'>" + new_lname + 
                 "</td><td id='dob_row" + table_len + "'>" + new_dob + 
                 "</td><td id= 'doj_row" + table_len + "'>" + new_doj + 
-                "</td><td><input type='button' id='edit_button" + table_len + 
-                "' value='Edit' class='edit' onclick='edit_row(" + table_len + ")'> <input type='button' id='save_button" + table_len + 
-                "' value='Save' class='save' onclick='save_row(" + table_len + ")'> <input type='button' value='Delete' class='delete' onclick='delete_row(" + table_len + ")'></td></tr>";
+                "</td><td><input type='editButton' id='edit_button" + table_len + 
+                "' value='Edit' class='edit' onclick='edit_row(" + table_len + ")'> <input type='editButton' id='save_button" + table_len + 
+                "' value='Save' class='save' onclick='save_row(" + table_len + ")'> <input type='deleteButton' value='Delete' class='delete' onclick='delete_row(" + table_len + ")'></td></tr>";
             document.getElementById("new_fname").value = "";
             document.getElementById("new_lname").value = "";
             document.getElementById("new_dob").value = "";
