@@ -18,8 +18,8 @@
             <tr>
                 <td><input type="text" id="fname" value = "John"></td>
                 <td><input type="text" id="lname" value = "Doe"></td>
-                <td><input type="text" id="dob" value = "mmddyyyy"></td>
-                <td><input type="text" id="doj" value = "mmddyyyy" ></td>
+                <td><input type="text" id="dob" value = "mm-dd-yyyy"></td>
+                <td><input type="text" id="doj" value = "mm-dd-yyyy" ></td>
                 <td><input type="button" class="add" onclick="add_row();" value="Add Row"></td>
             </tr>
 
@@ -28,6 +28,10 @@
 
 </body>
 <script>
+
+    //TODO: need to add validator for DOB and DOJ in addrow function, remove save button from row when not editing data
+
+    //edit a row of datag
     function edit_row(no) {
             document.getElementById("edit_button" + no).style.display = "none";
 
@@ -41,12 +45,15 @@
             var dob_entry = dob.innerHTML;
             var doj_entry = doj.innerHTML;
 
+            //reassign
             fname.innerHTML = "<input type='text' id='fname_text" + no + "' value='" + fname_entry + "'>";
             lname.innerHTML = "<input type='text' id='lname_text" + no + "' value='" + lname_entry + "'>";
             dob.innerHTML = "<input type='text' id='dob_text" + no + "' value='" + dob_entry + "'>";
             doj.innerHTML = "<input type='text' id='doj_text" + no + "' value='" + doj_entry + "'>";
         }
 
+
+        //save 
         function save_row(no) {
             var fname_val = document.getElementById("fname_text" + no).value;
             var lname_val = document.getElementById("lname_text" + no).value;
@@ -62,17 +69,20 @@
             document.getElementById("save_button" + no).style.display = "none";
             }
 
-
+        //delete row
         function delete_row(no) {
             document.getElementById("row" + no + "").outerHTML = "";
         }
 
+        //validate DOB and DOJ as dates
+        //validate that DOB exists before DOJ
+
+        //Submit entered data into a new row
         function add_row() {
             var new_fname = document.getElementById("fname").value;
             var new_lname = document.getElementById("lname").value;
             var new_dob = document.getElementById("dob").value;
             var new_doj = document.getElementById("doj").value;
-
 
             var table = document.getElementById("data_table");
             var table_len = (table.rows.length) - 1;
