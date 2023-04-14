@@ -1,0 +1,231 @@
+<html>
+
+<head>
+
+
+    <style>
+        input[type=addButton]
+        {
+            background-color: #81dd4d;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type=editButton]
+        {
+            background-color: #8cd3a9;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type=deleteButton] 
+        {
+            background-color: #336b7d;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;;
+            border-radius: 4px;
+        }
+
+        form1 {
+             justify-content: center;
+        }
+
+        table {
+	    background:#97aaa9;
+        color: #fff;
+        border-radius: 4px
+        }
+
+
+
+    </style>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        
+        <div align= 'center'>
+        <table>
+        <td>
+            First name: <br>
+            Last name: <br>
+            Date of Birth: <br>
+            Date of Joining: <br>
+        </td>
+
+        <td>
+        <input type="text" id="fname" value=""> <br>
+        <input type="text" id="lname" value=""> <br>
+        <input type="date" id="dob" name="DOB"><br>
+        <input type="date" id="doj" name="DOJ"><br>
+        
+        <!--
+        <input type="text" id="dob" value="dd-mm-yyyy"> <br>
+        <input type="text" id="doj" value="dd-mm-yyyy"> <br>
+        -->
+
+        </td>
+        </table>
+
+        <br>
+        <input type="addButton" class="add" onclick="add_row();" value="Add Data"> <br>
+        <br>
+        </div>
+
+        <table align='center' cellspacing=2 cellpadding=5 id="data_table" order=1>
+            <!--
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Date of Joining</th>
+            </tr>
+            -->
+        </table>
+        
+    </div>
+
+
+</body>
+<script>
+
+    //TODO: remove save button from row when not editing data
+
+    //edit a row of datag
+    function edit_row(no) {
+            document.getElementById("edit_button" + no).style.display = "none";
+
+            var fname = document.getElementById("fname_row" + no);
+            var lname = document.getElementById("lname_row" + no);
+            var dob = document.getElementById("dob_row" + no);
+            var doj = document.getElementById("doj_row" + no);
+
+            var fname_entry = fname.innerHTML;
+            var lname_entry = lname.innerHTML;
+            var dob_entry = dob.innerHTML;
+            var doj_entry = doj.innerHTML;
+            fname.innerHTML = "<input type='text' id='fname_text" + no + "' value='" + fname_entry + "'>";
+            lname.innerHTML = "<input type='text' id='lname_text" + no + "' value='" + lname_entry + "'>";
+            dob.innerHTML = "<input type='text' id='dob_text" + no + "' value='" + dob_entry + "'>";
+            doj.innerHTML = "<input type='text' id='doj_text" + no + "' value='" + doj_entry + "'>";
+        }
+
+
+        //save 
+        function save_row(no) {
+            var fname_val = document.getElementById("fname_text" + no).value;
+            var lname_val = document.getElementById("lname_text" + no).value;
+            var dob_val = document.getElementById("dob_text" + no).value;
+            var doj_val = document.getElementById("doj_text" + no).value;
+
+            document.getElementById("fname_row" + no).innerHTML = fname_val;
+            document.getElementById("lname_row" + no).innerHTML = lname_val;
+            document.getElementById("dob_row" + no).innerHTML = dob_val;
+            document.getElementById("doj_row" + no).innerHTML = doj_val;
+
+            document.getElementById("edit_button" + no).style.display = "block";
+            document.getElementById("save_button" + no).style.display = "none";
+        }
+
+        //delete row
+        function delete_row(no) {
+            document.getElementById("row" + no + "").outerHTML = "";
+        }
+
+        //Function to calculate user age if younger than 18
+        function calculateAge() {
+            var bday = new Date(document.getElementById("dob").value);
+            var today = new Date();
+
+            //calculate age
+            var age = today.getFullYear() - bday.getFullYear();
+            var month = today.getMonth() - bday.getMonth();
+            if (month < 0 || (month === 0 && today.getDate() < bday.getDate())) {
+                age--;
+            }
+            //return true if younger than 18
+            if (age < 18){
+                return true;
+            }
+        }
+
+
+        //Function to validate all data
+        function validation(){
+            var fname = document.getElementById("fname").value;
+            var lname = document.getElementById("lname").value;
+            var dob = document.getElementById("dob").value;
+            var doj = document.getElementById("doj").value;
+
+
+            //establish invalid characters
+            const invalid = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", " "]
+
+            for (var i in invalid) {
+                //validate names
+                 if(((fname.includes(invalid[i])) || (fname.length === 0)) || ((lname.includes(invalid[i])) || (lname.length === 0))){
+                    alert("Invalid Name Entry");
+                    return true;
+                 }
+                else if (calculateAge()){
+                    alert("Must be at least 18");
+                     return true;
+                }
+                 //data is valid
+                 else{
+                  return false;
+                 }
+            }
+
+        }
+
+        //Function to add a row
+        function add_row() {
+
+        
+            var new_fname = document.getElementById("fname").value;
+            var new_lname = document.getElementById("lname").value;
+            var new_dob = document.getElementById("dob").value;
+            var new_doj = document.getElementById("doj").value;
+        
+            
+            //validate data before adding row
+            if(!validation()){
+               
+                var table = document.getElementById("data_table");
+                var table_len = (table.rows.length) - 1;
+                var row = table.insertRow(table_len).outerHTML =
+                    "<tr id='row" + table_len + "'><td id='fname_row" + table_len + "'>" + new_fname +
+                    "</td><td id='lname_row" + table_len + "'>" + new_lname +
+                    "</td><td id='dob_row" + table_len + "'>" + new_dob +
+                    "</td><td id= 'doj_row" + table_len + "'>" + new_doj +
+                    "</td><td><input type='editButton' id='edit_button" + table_len +
+                    "' value='Edit' class='edit' onclick='edit_row(" + table_len + ")'> <input type='editButton' id='save_button" + table_len +
+                    "' value='Save' class='save' onclick='save_row(" + table_len + ")'> <input type='deleteButton' value='Delete' class='delete' onclick='delete_row(" + table_len + ")'></td></tr>";
+                document.getElementById("fname").value = "";
+                document.getElementById("lname").value = "";
+                document.getElementById("dob").value = "";
+                document.getElementById("doj").value = "";
+            }
+            else{
+                //do not execute add row
+            }
+           
+        }
+
+</script>
+
+</html>
