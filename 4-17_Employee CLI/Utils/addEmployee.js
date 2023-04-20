@@ -1,9 +1,12 @@
-import Employee from "../Module/Employee.js";
+import Employee from "../Model/Employee.js";
 //import readLineAsync, { isValidString } from '../Utils/ReadUtils.js'
-import { v4 as uuidv4 } from 'uuid';
+
 import fs from "fs";
 import os from "os";
 
+
+//const { uuid } = require('uuidv4');
+//import { v4 as uuidv4 } from 'uuid';
 
 /*
 let userInput = ''
@@ -73,12 +76,15 @@ function isValidEmail(contact) {
 */
 
 //validate email for being in xxxxxxx@x.xxx format
+
+/*
 function isValidEmail(email) {
     valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
     if (valid) {
         return true;
     } else { return false;}
 }
+*/
 
 //process validation
 function addEmployee(employeeArray, rl, displayUserMenu) {
@@ -97,7 +103,9 @@ function addEmployee(employeeArray, rl, displayUserMenu) {
             }
 
             rl.question("Enter contact: ", (contact) => {
+                
                 rl.question("Enter email: ", (email) => {
+                    /*
                     if (!isValidEmail(email)) {
                         console.log(
                             "Invalid email."
@@ -105,9 +113,13 @@ function addEmployee(employeeArray, rl, displayUserMenu) {
                         displayUserMenu();
                         return;
                     }
+                    */
 
                     //save data
-                    const id = uuidv4(); //generate an ID value for employee
+                    //const id = uuidv4(); //generate an ID value for employee
+
+                    //FIX- generate random ID
+                    const id = 1
                     const newEmployee = new Employee(id, name, age, contact, email);
                     employeeArray.push(newEmployee);
                     console.log(`${name}, ID: ${id}`);

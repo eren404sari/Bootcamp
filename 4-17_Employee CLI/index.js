@@ -1,4 +1,4 @@
-import Employee from "./Module/Employee.js";
+import Employee from "./Model/Employee.js";
 //import readLineAsync, { isValidString }  from "./Utils/ReadUtils.js"
 import readline from "readline";
 import addEmployee from "./Utils/addEmployee.js";
