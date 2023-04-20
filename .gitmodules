@@ -1,0 +1,3 @@
+[submodule "es6-workshop"]
+	path = es6-workshop
+	url = https://github.com/dheeraj-thedev/es6-workshop
