@@ -1,0 +1,73 @@
+{
+  "name": "ES6-Workshop",
+  "version": "0.0.0",
+  "private": true,
+  "description": "[![slides-badge][slides-badge]][slides] [![chat-badge][chat-badge]][chat] [![Build Status][build-badge]][build] [![Dependencies][dependencyci-badge]][dependencyci] [![MIT License][license-badge]][license] [![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors)",
+  "bugs": {
+    "url": "https://github.com/kentcdodds/es6-workshop/issues"
+  },
+  "main": "index.js",
+  "keywords": [
+    "workshop",
+    "es6"
+  ],
+  "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/kentcdodds/es6-workshop",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kentcdodds/es6-workshop.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "chalk": "^2.3.2",
+    "chokidar": "^2.0.3",
+    "concurrently": "^3.5.1",
+    "eslint": "^4.19.1",
+    "glob": "^7.1.2",
+    "kcd-scripts": "^0.37.0",
+    "lodash": "^4.17.5",
+    "onchange": "^3.3.0",
+    "pretty-format": "^22.4.3",
+    "replace-in-file": "^3.4.0",
+    "split-guide": "^3.0.0"
+  },
+  "scripts": {
+    "add-contributor": "kcd-scripts contributors add",
+    "start": "npm run test:watch",
+    "lint": "kcd-scripts lint",
+    "precommit": "kcd-scripts precommit && npm run generate && kcd-scripts format && npm run validate && git add exercises exercises-final",
+    "quiz": "babel-node quizzes/run.js",
+    "test": "kcd-scripts test --config exercises/jest.config.js",
+    "test:final": "kcd-scripts test --config exercises-final/jest.config.js",
+    "dev": "concurrently --names \"generate,test:final\" --prefix \"[{name}]\" --prefix-colors \"bgGreen.reset.bodl,bgBlue.reset.bold\" \"npm run generate:watch --silent\" \"npm run test:final --silent\"",
+    "generate": "split-guide generate --silent-success",
+    "generate:watch": "onchange \"templates/**/*.*\" --initial -- npm run generate",
+    "validate": "concurrently --names \"lint,test:final\" --prefix \"[{name}]\" --prefix-colors \"bgGreen.reset.bold,bgBlue.reset.bold\" \"npm run lint --silent\" \"npm run test:final --silent -- --no-watch\"",
+    "setup": "node ./scripts/verify && node ./scripts/install && npm run validate && node ./scripts/autofill-feedback-email"
+  },
+  "babel": {
+    "presets": [
+      "kcd-scripts/babel"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "kentcdodds/possible-errors",
+      "kentcdodds/es6/possible-errors",
+      "kentcdodds/jest"
+    ],
+    "rules": {
+      "no-console": "off",
+      "jest/no-disabled-tests": "off"
+    }
+  },
+  "eslintIgnore": [
+    "exercises",
+    "scripts",
+    "other",
+    "node_modules",
+    "templates"
+  ]
+}
