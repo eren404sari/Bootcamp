@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import axios from "axios";
+import { Container, Form, Button } from "react-bootstrap";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -31,28 +32,33 @@ const Login = () => {
     };
 
 return (
-    <form onSubmit={handleSubmit}>
+    <Container>
         <h2>Login</h2>
-        <div>
-            <label htmlFor="email">Email:</label>
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-            />
-        </div>
-        <div>
-            <label htmlFor="password">Password:</label>
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-            />
-        </div>
-        <button type="submit">Login</button>
-    </form>
+        <Form onSubmit={handleSubmit}>
+            
+            <div>
+                <label htmlFor="email">Email:</label>
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                />
+            </div>
+            <div>
+                <label htmlFor="password">Password:</label>
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                />
+            </div>
+                <Button variant="primary" type="submit">
+                    Login
+                </Button>
+        </Form>
+    </Container>
 );
 };
 

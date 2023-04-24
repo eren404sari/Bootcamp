@@ -4,14 +4,14 @@ import Signup from "./components/signup.js";
 import Home from "./components/home.js";
 import axios from "axios";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 axios.defaults.baseURL = "http://localhost:8077/api";
 axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
     if (token) {
-      //authorization here
-      
+      ///config.headers.Authorization = `Bearer ${}`;
     }
     return config;
   },
