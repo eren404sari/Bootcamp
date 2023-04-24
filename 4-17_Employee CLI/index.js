@@ -36,7 +36,7 @@ function displayUserMenu() {
     console.log("5- View All Employees");
     console.log("6- quit");
 
-    rl.question("Please enter your choice from above menu !", (userOpt) => {
+    rl.question("Please enter your choice from above menu:  ", (userOpt) => {
         switch (userOpt) {
             case "1":
                 addEmployee(employeeArray, rl, displayUserMenu);
