@@ -1,0 +1,17 @@
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+
+
+
+$primary: teal;
+$secondary: green;
+
+.btn btn-primary btn-sm {
+    color: #212529;
+    background-color: #7cc;
+    border-color: #5bc2c2
+    
+}
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
