@@ -1,17 +1,18 @@
-@import "bootstrap/functions";
-@import "bootstrap/variables";
+@import "bootstrap/scss/bootstrap";
+@import "custom-variables";
 
+$white: #ffffff;
 
-
-$primary: teal;
-$secondary: green;
-
-.btn btn-primary btn-sm {
-    color: #212529;
-    background-color: #7cc;
-    border-color: #5bc2c2
-    
-}
+$theme-colors: (
+    "light": rgb(138, 178, 178),
+    "dark": rgb(53, 10, 124),
+    "primary": rgb(78, 141, 141),
+    "secondary": rgb(72, 34, 148),
+    "info": #346392,
+    "success": rgb(45, 174, 116),
+    "warning": rgb(214, 101, 26),
+    "danger": rgb(151, 12, 70),
+);
 
 
 @import "../../node_modules/bootstrap/scss/bootstrap";

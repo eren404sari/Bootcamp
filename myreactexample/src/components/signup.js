@@ -1,38 +1,49 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Container, Form, Button, Navbar} from "react-bootstrap";
+import { signupApi } from "../Utils/ApiUtil.js";
+import { useNavigate, Link } from "react-router-dom";
 
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const newUser = {
-            email,
-            password,
-        };
         try {
-            const response = await axios.post(
-                "http://localhost:8077/api/v1/user/signup",
-                newUser,
-                {
-                    headers: {
-                        Authorization: "Bearer",
-                    },
-                }
-            );
-            const token = response.data.token;
-            console.log("Token:", token);
-            alert("Signed up successfully.");
+            await signupApi(email, password);
+            navigate("/login");
         } catch (error) {
-            alert("Error signing up.");
+            alert("Error signing up");
         }
     };
 
     return (
-        <div>
-            <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
+        <Container>
+            <Navbar bg="secondary" expand="lg">
+                <Container>
+
+                    <div>
+                        <Link to="/login">
+                            <Button>log in</Button>
+                        </Link>
+                    </div>
+
+                    <div>
+                        <Link to="/signup">
+                            <Button>sign up</Button>
+                        </Link>
+                    </div>
+
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        {/*add drop down menu with profile and option to log out*/}
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+            <h2>Sign Up</h2>
+            <Form onSubmit={handleSubmit}>
                 <div>
                     <input
                     type="email"
@@ -49,9 +60,11 @@ const Signup = () => {
                     onChange={(event) => setPassword(event.target.value)}
                 />
                 </div>
-                <button type="submit">Sign up</button>
-            </form>
-        </div>
+                <Button variant="primary" type="submit" class="btn btn-primary btn-sm">
+                    Sign Up
+                </Button>
+            </Form>
+        </Container>
     );
 };
 
