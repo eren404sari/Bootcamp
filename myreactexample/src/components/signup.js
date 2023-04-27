@@ -3,6 +3,7 @@ import axios from "axios";
 import { Container, Form, Button, Navbar} from "react-bootstrap";
 import { signupApi } from "../Utils/ApiUtil.js";
 import { useNavigate, Link } from "react-router-dom";
+import NavBar from "./navbar";
 
 const Signup = () => {
     const [email, setEmail] = useState("");
@@ -21,27 +22,7 @@ const Signup = () => {
 
     return (
         <Container>
-            <Navbar bg="secondary" expand="lg">
-                <Container>
-
-                    <div>
-                        <Link to="/login">
-                            <Button>log in</Button>
-                        </Link>
-                    </div>
-
-                    <div>
-                        <Link to="/signup">
-                            <Button>sign up</Button>
-                        </Link>
-                    </div>
-
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        {/*add drop down menu with profile and option to log out*/}
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
+            <NavBar />
             <h2>Sign Up</h2>
             <Form onSubmit={handleSubmit}>
                 <div>
