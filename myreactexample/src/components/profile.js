@@ -3,10 +3,16 @@ import { Container} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./navbar";
 import { fetchData } from "../Utils/ApiUtil.js";
+import profileimg from "../assets/userprofile.jpg";
 
 //const selectToken = (state) => state.auth.token;
 //const navigate = useNavigate();
-const profilePictureSrc = "../img/userprofile.jpg" //unable to change profile picture currently so this is a temp one for all profiles
+
+
+//TO-DO:
+ //unable to change profile picture currently so this is a temp one for all profiles
+
+
 
 //const selectToken = (state) => state.auth.token;
 
@@ -24,7 +30,9 @@ const profilePictureSrc = "../img/userprofile.jpg" //unable to change profile pi
                             <NavBar />
                             <div className="d-flex flex-column ms-5">
                                 <div className="text-center">
-                                    <img src={profilePictureSrc} style={{ width: '185px' }} alt="" />
+                                    <br></br>
+                                    <img src={profileimg} style={{ width: 100, height: 100, borderRadius: 20 / 2 }} alt="..." />
+                                    <br></br>
                                     <h2 className="mt-1 mb-5 pb-1"> Hello, {firstName} {lastName}</h2>
                                 </div>
                             </div>

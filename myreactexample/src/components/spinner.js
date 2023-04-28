@@ -1,16 +1,16 @@
 import Container from 'react-bootstrap/esm/Container';
-import image from '../img/spinner.gif'
+import image from '../assets/spinner.gif'
 import '../index.css';
 
-const LoadingSpinner = () => {
+const Spinner = () => {
     return (
         <Container>
-            <div className="loading-spinner flex" id="container">
-                <img className='flex-item' src={image}></img>
+            <div className="text-center">
+                <img src={image} width={30} height={30} alt=""></img>
             </div>
         </Container>
     )
 }
 
 
-export default LoadingSpinner
+export default Spinner

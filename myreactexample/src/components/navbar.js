@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Container, Button, Navbar, Nav} from "react-bootstrap";
-
+import profileimg from "../assets/userprofile.jpg";
+import logo from "../assets/snake.png";
 
 const NavBar = () => {
 
@@ -28,32 +29,43 @@ const NavBar = () => {
                         </button>
                     </Link>
                 </div>
-                <div>
-                    <Link to="/profile">
-                        <img
-                            src={'../img/userprofile.jpg'}
-                            alt="profile"
-                            width={30}
-                            height={30}
-                            roundedCircle
-                            className="me-3"
-                        />
-                    </Link>
-                </div>
-                <Nav.Link className="me-3">Welcome, {email}!</Nav.Link>
+
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     {/*add drop down menu with profile and option to log out as more pages are added to nav bar*/}
                 </Navbar.Collapse>
 
+                <div class="fa fa-align-right" aria-hidden="true">
+                    <navbar-profile-image
+                        className="me-auto"
+                        onClick={() => navigate("/profile")}
+                        style={{ cursor: "pointer" }}
+                    >
+                        <img
+                            src={profileimg}
+                            alt= "profile"
+                            style={{ width: 30, height: 30, borderRadius: 30 / 2 }}
+                        />
+                    </navbar-profile-image>
+
+                    <Nav.Link className="me-3">Welcome, {email}!</Nav.Link>
+                </div>
+
                 <Navbar.Brand
                     className="me-auto"
                     onClick={() => navigate("/")}
                     style={{ cursor: "pointer" }}
                 >
-                    🐍
+                    <img 
+                        src={logo} 
+                        alt="logo"
+                        width={30}
+                        height={30} 
+                    />
                 </Navbar.Brand>
+
+               
             </Container>
         </Navbar>
     );

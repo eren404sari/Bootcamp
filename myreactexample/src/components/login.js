@@ -4,14 +4,13 @@ import { Container, Form, Button} from "react-bootstrap";
 import { loginApi } from "../Utils/ApiUtil.js";
 import { useNavigate, Link } from "react-router-dom";
 import NavBar from "./navbar";
+import Spinner from './spinner.js';
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false); // Add a loading state
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-
-
 
 
 
@@ -39,6 +38,11 @@ const Login = () => {
         }
         setLoading(false);
     };
+
+    var buttonContent = "Go!"
+    if (loading) {
+        buttonContent = <div className="list-msg"><Spinner /></div>;
+    }
 
     return (
         <box>
@@ -71,7 +75,7 @@ const Login = () => {
                     </div>
                     <br></br>
                     <button class="button-submit" role="button" type="submit">
-                        Go!
+                        {buttonContent}
                     </button>
                 </Form>
         </Container>
