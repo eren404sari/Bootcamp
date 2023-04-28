@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Container, Form, Button, Navbar} from "react-bootstrap";
+import { Container, Form, Button} from "react-bootstrap";
 import { loginApi } from "../Utils/ApiUtil.js";
 import { useNavigate, Link } from "react-router-dom";
 import NavBar from "./navbar";
@@ -8,56 +8,74 @@ import NavBar from "./navbar";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false); // Add a loading state
     const navigate = useNavigate();
+
+
+
 
 
     //login handled in ApiUtils
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
         try {
-            const login_attempt = await loginApi(email, password);
 
-            if (login_attempt.status === "success") {
-                const token = login_attempt.response;
-                localStorage.setItem("authToken", token);
+            const response = await loginApi({
+                email: email,
+                password: password,
+            })
+            response.then(function (response) {
+                console.log(response.data);
+                localStorage.setItem("accessToken", response.data.response);
                 navigate("/home");
-            } else {
-                alert(login_attempt.response);
-            }
-        } catch (error) {
-            alert("Error logging in.");
-        }
-    };
-    
-    return (
-        <Container>
-            <NavBar />
-            <h2>Login</h2>
-            <Form onSubmit={handleSubmit}>
+            }).catch(function (error) {
+                console.error(error);
+            });
 
+        } catch (error) {
+            console.error(error);
+            alert("Error logging in");
+        }
+        setLoading(false);
+    };
+
+    return (
+        <box>
+        <Container>
+                <NavBar />
                 <div>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                    />
+                <h2>Login</h2>
                 </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(event) => setPassword(event.target.value)}
-                    />
-                </div>
-                <Button variant="primary" type="submit" class="btn btn-primary btn-sm">
-                    Log In
-                </Button>
-            </Form>
+                <Form onSubmit={handleSubmit}>
+
+                    <div>
+                        <label htmlFor="email">Email:</label>
+                        <input
+                            type="email"
+                            placeholder="abc@123.com"
+                            className="form-control"
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password:</label>
+                        <input
+                            type="password"
+                            placeholder="123456"
+                            className="form-control"
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                        />
+                    </div>
+                    <br></br>
+                    <button class="button-submit" role="button" type="submit">
+                        Go!
+                    </button>
+                </Form>
         </Container>
+        </box>
     );
 };
 
