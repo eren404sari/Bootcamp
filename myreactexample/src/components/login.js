@@ -13,6 +13,9 @@ const Login = () => {
     const navigate = useNavigate();
 
 
+//docker pull dheerajthedev123 / bootcamp - api
+//docker run - p 8077: 8077 dheerajthedev123 / bootcamp - api: dbfixed
+
 
     //login handled in ApiUtils
     const handleSubmit = async (event) => {
@@ -36,7 +39,6 @@ const Login = () => {
             console.error(error);
             alert("Error logging in");
         }
-        setLoading(false);
     };
 
     var buttonContent = "Go!"
