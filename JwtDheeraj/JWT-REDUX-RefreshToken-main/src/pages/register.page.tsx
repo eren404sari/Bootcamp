@@ -1,3 +1,4 @@
+
 import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
 import { object, string, TypeOf } from "zod";
 import { styled } from "@mui/material/styles";
@@ -29,6 +30,9 @@ const registerSchema = object({
   path: ["passwordConfirm"],
   message: `Passwords do not match ! `,
 });
+
+
+const sleep = async (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export type RegisterInput = TypeOf<typeof registerSchema>;
 

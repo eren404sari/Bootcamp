@@ -1,19 +1,26 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authApi } from "./api/authApi";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import userReducer from "./features/userSlice";
+import { userApi } from "./api/userApi";
 
 // The configureStore function from Redux Toolkit is used to create the Redux store.
 export const store = configureStore({
   // The reducer configuration is set up, with the authApi.reducer assigned to the corresponding path.
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
+    userState: userReducer
   },
   // The Redux DevTools extension is enabled in development mode.
   devTools: process.env.NODE_ENV === "development",
   // The middleware configuration is set up, with the getDefaultMiddleware function used to get
   // the default middleware and the authApi.middleware added to the middleware stack.
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({}).concat([authApi.middleware]),
+    getDefaultMiddleware({}).concat(
+      [authApi.middleware, userApi.middleware]
+
+    ),
 });
 
 // RootState and AppDispatch types are derived from the store to ensure type safety when using Redux with TypeScript.
