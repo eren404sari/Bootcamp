@@ -6,7 +6,16 @@ const ProfilePage = () => {
     const user = useAppSelector((state) => state.userState.user)
     // retrive the user instance form the stroe or redux
     return (
-        <Container>
+        <Container
+            maxWidth={false}
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+                backgroundColor: "#c5d4a1",
+            }}
+        >
             <Box>
                 <Typography> Here is my profile</Typography>
             </Box>

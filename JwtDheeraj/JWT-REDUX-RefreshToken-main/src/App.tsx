@@ -4,13 +4,17 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import RegisterPage from "./pages/register.page";
 import LoginPage from "./pages/login.page";
+import HomePage from "./pages/home.page";
+import PassResetPage from "./pages/passreset.page";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<RegisterPage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/resetpassword" element={<PassResetPage />} />
         <Route path="verifyemail">
           <Route path=":verificationCode" />
         </Route>

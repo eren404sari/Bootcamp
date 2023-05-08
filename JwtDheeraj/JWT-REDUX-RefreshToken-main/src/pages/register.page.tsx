@@ -89,7 +89,7 @@ const RegisterPage = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
-        backgroundColor: "#2363eb",
+        backgroundColor: "#c5d4a1",
       }}
     >
       <Box

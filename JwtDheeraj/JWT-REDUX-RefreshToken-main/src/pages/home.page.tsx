@@ -1,33 +1,59 @@
-import { Box, Container, Typography } from "@mui/material"
-import { useAppSelector } from "../redux/store"
-import { useLocation, useNavigate, withRouter } from "react-router-dom";
+import { Box, Button, Container, Typography } from "@mui/material"
+import { useNavigate} from "react-router-dom";
+
+
+
 
 const HomePage = () => {
+    const navigate = useNavigate();
 
-
-
-    const loginButton = withRouter(({ history }) => (
-        <button
-            type='button'
-            onClick={() => { history.push('/login.page') }}
-        >
-            Log In
-        </button>
-    ))
-
-    const registerButton = withRouter(({ history }) => (
-        <button
-            type='button'
-            onClick={() => { history.push('/register.page') }}
-        >
-            Register
-        </button>
-    ))
+    const loginButton = () => {
+        navigate("/login");
+    };
+    const registerButton = () => {
+        navigate("/register");
+    };
+    const passwordButton = () => {
+        navigate("/resetpassword");
+    };
 
     return (
-        <Container>
-            <Box>
-                <Typography> This is the HomePage</Typography>
+
+
+        <Container
+            maxWidth={false}
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+                backgroundColor: "#c5d4a1",
+            }}
+            >
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                }}
+                >
+                <Typography variant="h3" align="center" gutterBottom>
+                            This is the Home Page
+                </Typography>
+                <Box sx={{justifyContent: "center", mt: 4 }}>
+                    <Button variant="contained" onClick={loginButton}>
+                        Login
+                    </Button>
+                    <Button variant="contained" onClick={registerButton}>
+                        Register
+                    </Button>
+                </Box>
+                <Box sx={{justifyContent: "center", mt: 4 }}>
+                    <Button variant="text" onClick={passwordButton}>
+                        Forgot Password?
+                    </Button>
+                </Box>
             </Box>
         </Container>
     )
