@@ -26,6 +26,12 @@ const addEmployee = async () => {
 export default new Employee;
 */
 
+let employees = []
+
+function allEmployee() {
+    return employees
+}
+
 //save employee data into file
 function saveEmployeeData(employee) {
     const homeDir = os.homedir();
