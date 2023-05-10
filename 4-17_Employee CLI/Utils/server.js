@@ -8,7 +8,13 @@ import viewAll from "./viewAll.js";
 const http = require('http');
 const url = require("url");
 
-
+let employees = [{
+    "id": "123456",
+	"name":"dheeraj",
+ 	"age":20,
+    "contact": "1212121212",
+	"email":"someone@gmail.com"
+ }];
 
 const server = http.createServer((req, res) => {
 
@@ -57,6 +63,7 @@ const server = http.createServer((req, res) => {
             switch (req.method) {
                 case "POST":
                     {
+                        
                         break;
                     }
             }
