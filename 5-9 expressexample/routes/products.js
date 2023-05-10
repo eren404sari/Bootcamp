@@ -1,5 +1,6 @@
 var express = require('express');
 const addProduct = require("../services/addProduct");
+var uuid = require("uuid");
 
 var router = express.Router();
 
@@ -9,5 +10,7 @@ router.post('/addProduct', function (req, res, next) {
     const data = addProduct(product)
     res.send(JSON.stringify(data))
 });
+
+
 
 module.exports = router;
