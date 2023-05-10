@@ -31,7 +31,7 @@ function saveProductData(product) {
 //(title, description, media, price, quantity, weight)
 
 function isValidName(name) {
-  const regex = /^[a-zA-Z\s]+$/;
+  
   return regex.test(name);
 }
 
@@ -63,7 +63,7 @@ function isValidWeight(weight) {
 function addProduct(product) {
   
   const { name, desc, media, price, quantity, weight } = product
-    //console.log( fullName, age, contact, email ,product)
+    //console.log( name, desc, media, price, quantity, weight)
     if (!isValidName(name) || !isValidPrice(price) || !isValidWeight(weight)) {
             
       throw new Error(`Can not save invalid ${name} ${desc} ${media} ${price} ${quantity} ${weight} `);
