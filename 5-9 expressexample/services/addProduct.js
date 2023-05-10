@@ -2,6 +2,7 @@ const Product = require("./product.js");
 const fs = require("fs");
 const os = require("os");
 var logger = require('morgan');
+import { v4 as uuidv4 } from 'uuid';
 
 let products=[]
   function allProducts(){
@@ -10,7 +11,7 @@ let products=[]
 
 function saveProductData(product) {
   const folderPath = `c:\\`;
-  const filePath = `${folderPath}/data/products.json`;
+  const filePath = `./`;
   const jsonBytes= fs.readFileSync(filePath)
   let products= JSON.parse(jsonBytes);
   products.push(product)
@@ -31,7 +32,7 @@ function saveProductData(product) {
 //(title, description, media, price, quantity, weight)
 
 function isValidName(name) {
-  
+
   return regex.test(name);
 }
 
@@ -68,7 +69,8 @@ function addProduct(product) {
             
       throw new Error(`Can not save invalid ${name} ${desc} ${media} ${price} ${quantity} ${weight} `);
     }
-  const newProduct = new Product(name, desc, media, price, quantity, weight);
+  const id = uuidv4();
+  const newProduct = new Product(id, name, desc, media, price, quantity, weight);
     products.push(newProduct);
     saveProductData(newProduct);
     return products

@@ -2,6 +2,7 @@ const Employee = require("./employee.js");
 const fs = require("fs");
 const os = require("os");
 var logger = require('morgan');
+import { v4 as uuidv4 } from 'uuid';
 
 let employees=[]
   function allEmployee(){
@@ -10,7 +11,7 @@ let employees=[]
 
 function saveEmployeeData(employee) {
   const folderPath = `c:\\`;
-  const filePath = `${folderPath}/data/employees.json`;
+  const filePath = `./`;
   const jsonBytes= fs.readFileSync(filePath)
   let employees= JSON.parse(jsonBytes);
   employees.push(employee)
@@ -52,7 +53,7 @@ function addEmployee(employee) {
       throw new Error(`Can not save invalid ${fullName} ${age} ${email} `);
     }
 
-    const id = (employees.length + 1);
+  const id = uuidv4();
     const newEmployee = new Employee(id, fullName, age, contact, email);
     employees.push(newEmployee);
     saveEmployeeData(newEmployee);

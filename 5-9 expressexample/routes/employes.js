@@ -16,16 +16,6 @@ router.get("/", (req, res) => {
   res.json(employees);
 });
 
-router.get("/:id", (req, res) => {
-  const found = employees.some(employee => employee.id === parseInt(req.params.id));
-
-  if (found) {
-    res.json(employees.filter(employee => employee.id === parseInt(req.params.id)));
-  } else {
-    res.sendStatus(400);
-  }
-});
-
 router.post("/", (req, res) => {
   const newEmployee = {
     id: uuid.v4(),
@@ -34,8 +24,21 @@ router.post("/", (req, res) => {
     contact: req.body.contact,
     email: req.body.email
   };
+  if (!newEmployee.name || !newEmployee.email) {
+    return res.sendStatus(400);
+  }
   employees.push(newEmployee);
   res.json(employees);
+});
+
+router.get('/employee/:id', (req, res) => {
+  const employeeId = req.params.id;
+  const employee = addEmployee.allEmployees().find((p) => p.id === parseInt(employeeId));
+  if (employee) {
+    res.json(employee);
+  } else {
+    res.status(404).json({ error: 'Employee not found' });
+  }
 });
 
 module.exports = router;
