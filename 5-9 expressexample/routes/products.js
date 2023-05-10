@@ -20,8 +20,8 @@ router.get('/', (req, res) => {
 
 router.post('/addProduct', (req, res) => {
     try {
-        const { title, description, price, media } = req.body;
-        const newProduct = { title, desc, media, price, quantity, weight };
+        const { id, title, desc, media, price, quantity, weight } = req.body;
+        const newProduct = { id, title, desc, media, price, quantity, weight };
         const products = addProduct(newProduct);
         res.status(201).json(products);
     } catch (error) {
