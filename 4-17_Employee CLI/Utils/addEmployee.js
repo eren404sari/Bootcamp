@@ -134,4 +134,4 @@ function addEmployee(employeeArray, rl, displayUserMenu) {
     });
 }
 
-export default addEmployee;
+module.exports = addEmployee;

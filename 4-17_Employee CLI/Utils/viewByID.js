@@ -15,4 +15,4 @@ function viewById(employeeArray, rl, displayUserMenu) {
     });
 }
 
-export default viewById;
+module.exports = viewById;

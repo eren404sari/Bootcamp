@@ -18,4 +18,4 @@ function viewByEmail(employeeArray, rl, displayUserMenu) {
     });
 }
 
-export default viewByEmail;
+module.exports = viewByEmail;

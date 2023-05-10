@@ -1,13 +1,14 @@
 import Employee from "../Model/Employee.js";
-const viewEmployeeById = require("./viewEmployeeById.js");
-const viewEmployeeByName = require("./viewEmployeeByName.js");
-const viewEmployeeByEmail = require("./viewEmployeeByEmail.js");
-const viewAllEmployees = require("./viewAllEmployees.js");
+import addEmployee from "./addEmployee.js";
+import viewById from "./viewByID.js";
+import viewByName from "./viewByName.js";
+import viewByEmail from "./viewByEmail.js";
+import viewAll from "./viewAll.js";
 
 const http = require('http');
-const fs = require('fs');
-const hostname = '127.0.0.1';
-const port = 3000;
+const url = require("url");
+
+
 
 const server = http.createServer((req, res) => {
 
@@ -51,16 +52,44 @@ const server = http.createServer((req, res) => {
 
             break;
         case "/api/v1/viewEmployeeById":
+            console.log("Received viewEmployeeByID request");
             // Use the viewEmployeeById utility function
+            switch (req.method) {
+                case "POST":
+                    {
+                        break;
+                    }
+            }
+
             break;
         case "/api/v1/viewEmployeeByName":
+            console.log("Received viewEmployeeByName request");
             // Use the viewEmployeeByName utility function
+            switch (req.method) {
+                case "POST":
+                    {
+
+                        break;
+                    }
+            }
+
             break;
         case "/api/v1/viewEmployeeByEmail":
+            console.log("Received viewEmployeeByEmail request");
             // Use the viewEmployeeByEmail utility function
+            switch (req.method) {
+                case "POST":
+                    {
+
+                        break;
+                    }
+            }
+
             break;
         case "/api/v1/viewAllEmployees":
+            console.log("Received viewAllEmployees request");
             // Use the viewAllEmployees utility function
+
             break;
         default:
             res.writeHead(404, { "Content-Type": "text/plain" });
@@ -71,6 +100,3 @@ const server = http.createServer((req, res) => {
 server.listen(3000, () => {
     console.log("Server listening on port 3000");
 });
-
-// module.exports = { employees };
-

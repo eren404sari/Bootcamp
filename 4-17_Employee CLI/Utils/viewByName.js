@@ -18,4 +18,4 @@ function viewByName(employeeArray, rl, displayUserMenu) {
     });
 }
 
-export default viewByName;
+module.exports = viewByName;

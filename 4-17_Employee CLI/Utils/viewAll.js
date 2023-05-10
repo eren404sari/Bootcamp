@@ -13,4 +13,4 @@ function viewAll(employeeArray, displayUserMenu) {
     displayUserMenu();
 }
 
-export default viewAll;
+module.exports = viewAll;
