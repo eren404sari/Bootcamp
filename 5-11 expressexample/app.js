@@ -11,8 +11,9 @@ var cors = require('cors')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var employeeRouter = require('./routes/employes')
+var employeeRouter = require('./routes/employees')
 var authRouter = require('./routes/auth')
+var productsRouter = require('./routes/products')
 var app = express();
 
 // view engine setup

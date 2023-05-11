@@ -1,9 +1,15 @@
-var express = require('express');
-var router = express.Router();
+const mongoose = require('mongoose');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+const userSchema = new mongoose.Schema(
+  {
+    firstName: { type: String, default: null },
+    lastName: { type: String, default: null },
+    email: { type: String, default: null },
+    password: { type: String, default: null },
+    token: { type: String, default: null },
+    roles: { type: [String], enum: ['admin', 'user', 'sales', 'accounts', 'warehouse'], default: 'user' },
 
-module.exports = router;
+  }
+)
+
+module.exports = mongoose.model('user', userSchema);
