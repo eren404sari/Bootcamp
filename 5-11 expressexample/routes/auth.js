@@ -65,21 +65,17 @@ router.post('/register', async (req, res, next) => {
 
 router.post('/login', function (req, res, next) {
     // implementation goes here 
-    // 1. get the user input from req.body {email, password}
-    res.send(`Email: ${email}`);
-    res.send(`Password: ${password}`);
+    try{
+        const { email, password } = req.body
+        if(!(email && password)){
+            res.status()
+        }
 
-    // 2. validate it see validations done in register
-    
-
-    // 3. validate from db if the user exist if yes then proceed otherwise send a json resone stating error look at register
-    //const user = user.find(
-    //    (usr) => usr.getEmail().toLowerCase() === email.toLowerCase(),
-    //   (usr) => usr.getPassword() === password
-    //)
-
-    // 4. if the user with email exist in database then make a token assign the expiratory time 2hrs and respond with token generated
-
+    }
+   catch(error){
+    console.log(error)
+   }
+   
     
 });
 module.exports = router;
