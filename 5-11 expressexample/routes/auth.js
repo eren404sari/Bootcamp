@@ -68,7 +68,15 @@ router.post('/login', function (req, res, next) {
     try{
         const { email, password } = req.body
         if(!(email && password)){
-            res.status()
+            res.status(400).send({ errors: [`the email is : ${email}  can not be blank `, `the password is : ${password}  can not be blank`]})
+        }
+        const user = await user.findOne({email})
+        if(user && (await brcrypt.compare(password,user.password))){
+            const token = jwt.sign({
+                id: user._id, email
+            }, process.env.TOKEN_KEY, {expiresIN: "2h" });
+            user.token = token
+            return res.status(401).json({ errors: ["invalid credentials"] })
         }
 
     }
